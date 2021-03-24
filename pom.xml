@@ -11,7 +11,7 @@
 
 	<groupId>io.kyberorg</groupId>
 	<artifactId>example</artifactId>
-	<version>0.0</version>
+	<version>1.0</version>
 
     <name>Example App</name>
 	<description>Spring Boot Application with Vaadin, REST and DB</description>
@@ -32,11 +32,6 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
-		</dependency>
-        <!-- Data REST: REST -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-rest</artifactId>
 		</dependency>
         <!-- Web -->
 		<dependency>
@@ -96,6 +91,19 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+        <!-- Selenide: best UI testing framework -->
+        <dependency>
+            <groupId>com.codeborne</groupId>
+            <artifactId>selenide</artifactId>
+            <version>5.19.0</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- Unirest: REST calls -->
+        <dependency>
+            <groupId>com.konghq</groupId>
+            <artifactId>unirest-java</artifactId>
+            <version>3.11.11</version>
+        </dependency>
 	</dependencies>
 
 	<dependencyManagement>
@@ -153,6 +161,15 @@
 				</plugins>
 			</build>
 		</profile>
+        <profile>
+            <id>noTesting</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <maven.test.skip>true</maven.test.skip>
+            </properties>
+        </profile>
 	</profiles>
 
 </project>
