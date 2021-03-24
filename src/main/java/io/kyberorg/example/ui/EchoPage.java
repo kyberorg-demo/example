@@ -6,13 +6,14 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.spring.annotation.SpringComponent;
 import com.vaadin.flow.spring.annotation.UIScope;
+import io.kyberorg.example.Endpoint;
 
 @SpringComponent
 @UIScope
-@PageTitle("ExampleApp: Second Page")
-@Route(value = "pageTwo", layout = MainView.class)
-public class SecondView extends Div {
-    public SecondView() {
-        add(new H2("It also works!"));
+@PageTitle("ExampleApp: Echo Page")
+@Route(value = Endpoint.UI.ECHO_PAGE, layout = MainView.class)
+public class EchoPage extends Div {
+    public EchoPage() {
+        add(new H2("Echo Page"));
     }
 }

@@ -27,12 +27,12 @@ vaadin-tab[selected] {
     background: var(--lumo-primary-color-10pct);
 }
 
-vaadin-tab a ir on-icon {
+vaadin-tab a iron-icon {
     padding-right: 1rem;
 }
 
 .subtitle-tab {
-    color: rgba(24, 39, 57, 0.94);
+    color: var(--lumo-header-text-color);
 }
 
 div[content] {

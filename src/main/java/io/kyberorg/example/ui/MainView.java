@@ -62,8 +62,10 @@ public class MainView extends AppLayout implements BeforeEnterObserver, PageConf
         //items
         addLogo();
         addSubTitle();
-        addMenuTab("Main", StatusView.class, VaadinIcon.HOME);
-        addMenuTab("Second Page", SecondView.class, VaadinIcon.ABACUS);
+        addMenuTab("Home", HomePage.class, VaadinIcon.HOME);
+        addMenuTab("Time", TimePage.class, VaadinIcon.CLOCK);
+        addMenuTab("Echo", EchoPage.class, VaadinIcon.EXCHANGE);
+        addMenuTab("Status", StatusPage.class, VaadinIcon.SPARK_LINE);
 
         tabs.setOrientation(Tabs.Orientation.VERTICAL);
         addToDrawer(tabs);

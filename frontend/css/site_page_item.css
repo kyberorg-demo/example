@@ -1,0 +1,23 @@
+.site-page-item {
+    border: 1px solid var(--lumo-primary-color);
+    border-radius: 3rem;
+    text-align: center;
+    width: 33vw;
+    height: 33vmin;
+    display: flex;
+}
+
+.site-page-item:after {
+    content: "";
+    display: block;
+    padding-bottom: 100%; /* 1:1 Aspect Ratio */
+}
+
+.site-page-item-content {
+    font-size: 2em;
+}
+
+.site-page-item-content iron-icon {
+    width: 50%;
+    height: 100%;
+}
