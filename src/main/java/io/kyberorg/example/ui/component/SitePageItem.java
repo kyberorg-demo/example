@@ -10,6 +10,7 @@ import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.dom.ElementConstants;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -36,6 +37,7 @@ public class SitePageItem extends Composite<Div> {
     private void init() {
         i = new Icon(icon);
         i.addClassName("site-page-item-content-icon");
+        i.getStyle().set(ElementConstants.STYLE_MAX_HEIGHT, "100%");
         textSpan = new Span(text);
         textSpan.addClassName("ite-page-item-content-text");
 

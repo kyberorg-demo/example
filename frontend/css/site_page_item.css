@@ -19,5 +19,5 @@
 
 .site-page-item-content iron-icon {
     width: 50%;
-    height: 100%;
+    height: calc(100% - 2em);
 }
