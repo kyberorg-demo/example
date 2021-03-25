@@ -15,6 +15,11 @@
 
 .site-page-item-content {
     font-size: 2em;
+    color: white;
+}
+
+.site-page-item-content-text {
+    text-decoration: none;
 }
 
 .site-page-item-content iron-icon {
