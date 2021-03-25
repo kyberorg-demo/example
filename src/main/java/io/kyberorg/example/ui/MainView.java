@@ -121,7 +121,8 @@ public class MainView extends AppLayout implements BeforeEnterObserver, PageConf
         settings.addMetaTag("msapplication-TileColor", "#ffc40d");
         settings.addMetaTag("theme-color", "#000000");
 
-        //settings.addInlineFromFile("splash-screen.html", InitialPageSettings.WrapMode.NONE);
+        //Splash (Loading) Screen
+        settings.addInlineFromFile("splash-screen.html", InitialPageSettings.WrapMode.NONE);
     }
 
     public static class IDs {

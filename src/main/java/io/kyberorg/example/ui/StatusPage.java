@@ -4,6 +4,8 @@ import com.vaadin.flow.component.HasStyle;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.Span;
+import com.vaadin.flow.component.icon.Icon;
+import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
@@ -48,7 +50,11 @@ public class StatusPage extends VerticalLayout {
         initDatabaseStatusLine();
         initRandomComponentStatusLine();
 
-        add(title, applicationStatusLine, databaseStatusLine, randomComponentStatusLine);
+        Icon q = new Icon(VaadinIcon.FLASK);
+        q.setId("512px");
+        q.setColor("blue");
+
+        add(title, applicationStatusLine, databaseStatusLine, randomComponentStatusLine, q);
     }
 
     private void applyLoadState() {
