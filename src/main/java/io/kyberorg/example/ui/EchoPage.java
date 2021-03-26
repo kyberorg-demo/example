@@ -24,7 +24,7 @@ import org.apache.commons.lang3.StringUtils;
 @Route(value = Endpoint.UI.ECHO_PAGE, layout = MainView.class)
 public class EchoPage extends VerticalLayout {
     private final H2 title = new H2("Echo Page");
-    private final Span aboutSpan = new Span("This page implements Echo Protocol aka TCP/7. " +
+    private final Span aboutSpan = new Span("This page implements Echo Protocol aka TCP/7 aka RFC862. " +
             "We send received data back.");
 
     private final HorizontalLayout inputLine = new HorizontalLayout();
