@@ -1,7 +1,7 @@
-package io.kyberorg.example.tests.ui.pages.status;
+package io.kyberorg.example.tests.ui.pages;
 
 import io.kyberorg.example.tests.ui.SelenideTest;
-import io.kyberorg.example.tests.ui.pageobjects.StatusPage;
+import io.kyberorg.example.tests.ui.pageobjects.HomePage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -11,12 +11,12 @@ import static com.codeborne.selenide.Selenide.open;
 import static io.kyberorg.example.tests.ui.pageobjects.Vaadin.waitForVaadin;
 
 /**
- * Testing /(Status) URL.
+ * Testing /(Home) URL.
  *
  * @since 1.0
  */
 @SpringBootTest
-public class StatusPageTest extends SelenideTest {
+public class HomePageTest extends SelenideTest {
 
     /**
      * Test Setup.
@@ -29,10 +29,11 @@ public class StatusPageTest extends SelenideTest {
     }
 
     /**
-     * On URL with slash (/) only opens status page.
+     * On URL with slash (/) only opens home page with 3 items.
      */
     @Test
-    public void urlWithSlashWillOpenStatusPage() {
-        StatusPage.PAGE_TITLE.should(exist);
+    public void urlWithSlashWillOpenHomePage() {
+        HomePage.PAGE_TITLE.should(exist);
+        HomePage.SITE_PAGE_ITEMS.shouldHaveSize(3);
     }
 }

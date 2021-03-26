@@ -4,8 +4,6 @@ import com.vaadin.flow.component.HasStyle;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.Span;
-import com.vaadin.flow.component.icon.Icon;
-import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
@@ -50,11 +48,7 @@ public class StatusPage extends VerticalLayout {
         initDatabaseStatusLine();
         initRandomComponentStatusLine();
 
-        Icon q = new Icon(VaadinIcon.FLASK);
-        q.setId("512px");
-        q.setColor("blue");
-
-        add(title, applicationStatusLine, databaseStatusLine, randomComponentStatusLine, q);
+        add(title, applicationStatusLine, databaseStatusLine, randomComponentStatusLine);
     }
 
     private void applyLoadState() {
@@ -95,6 +89,8 @@ public class StatusPage extends VerticalLayout {
         applicationStatusLine = new HorizontalLayout();
         Span text = new Span("Application Status: ");
         applicationStatusText = new Span(UNKNOWN);
+        text.setId(IDs.APP_STATUS_LABEL);
+        applicationStatusText.setId(IDs.APP_STATUS_TEXT);
         applicationStatusLine.add(text, applicationStatusText);
     }
 
@@ -102,6 +98,8 @@ public class StatusPage extends VerticalLayout {
         databaseStatusLine = new HorizontalLayout();
         Span text = new Span("Database Status: ");
         databaseStatusText = new Span(UNKNOWN);
+        text.setId(IDs.DB_STATUS_LABEL);
+        databaseStatusText.setId(IDs.DB_STATUS_TEXT);
         databaseStatusLine.add(text, databaseStatusText);
     }
 
@@ -109,6 +107,8 @@ public class StatusPage extends VerticalLayout {
         randomComponentStatusLine = new HorizontalLayout();
         Span text = new Span("Random Component Status: ");
         randomComponentStatusText = new Span(UNKNOWN);
+        text.setId(IDs.RANDOM_COMPONENT_STATUS_LABEL);
+        randomComponentStatusText.setId(IDs.RANDOM_COMPONENT_STATUS_TEXT);
         randomComponentStatusLine.add(text, randomComponentStatusText);
     }
 
@@ -126,5 +126,11 @@ public class StatusPage extends VerticalLayout {
 
     public static class IDs {
         public static final String VIEW_ID = "statusView";
+        public static final String APP_STATUS_LABEL = "appStatusLabel";
+        public static final String APP_STATUS_TEXT = "appStatusText";
+        public static final String DB_STATUS_LABEL = "dbStatusLabel";
+        public static final String DB_STATUS_TEXT = "dbStatusText";
+        public static final String RANDOM_COMPONENT_STATUS_LABEL = "rndStatusLabel";
+        public static final String RANDOM_COMPONENT_STATUS_TEXT = "rndStatusText";
     }
 }

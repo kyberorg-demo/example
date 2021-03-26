@@ -3,6 +3,7 @@ package io.kyberorg.example.tests.api.echo;
 import io.kyberorg.example.Endpoint;
 import io.kyberorg.example.tests.api.UnirestTest;
 import kong.unirest.*;
+import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Test;
 
 import static io.kyberorg.example.App.HttpCode.STATUS_200;
@@ -35,10 +36,9 @@ public class EchoApiTest extends UnirestTest {
 
     @Test
     public void echoWithoutBodyReturnsNothing() {
-        String stringBody = "StringBody";
-        RequestBodyEntity request = Unirest.post(TEST_URL + Endpoint.Api.ECHO_API).body(stringBody);
+        HttpRequestWithBody request = Unirest.post(TEST_URL + Endpoint.Api.ECHO_API);
         HttpResponse<String> result = request.asString();
 
-        assertNull(result.getBody(), "Body should be null");
+        assertTrue(StringUtils.isBlank(result.getBody()), "Body should be empty");
     }
 }

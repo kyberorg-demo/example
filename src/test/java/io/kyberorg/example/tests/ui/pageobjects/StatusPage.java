@@ -16,4 +16,10 @@ public class StatusPage {
     }
 
     public static final SelenideElement PAGE_TITLE = $("h2");
+    public static final SelenideElement APP_STATUS_LABEL = $("#appStatusLabel");
+    public static final SelenideElement APP_STATUS_TEXT = $("#appStatusText");
+    public static final SelenideElement DB_STATUS_LABEL = $("#dbStatusLabel");
+    public static final SelenideElement DB_STATUS_TEXT = $("#dbStatusText");
+    public static final SelenideElement RANDOM_COMPONENT_STATUS_LABEL = $("#rndStatusLabel");
+    public static final SelenideElement RANDOM_COMPONENT_STATUS_TEXT = $("#rndStatusText");
 }
