@@ -19,8 +19,17 @@ public class Endpoint {
 
         /**
          * API that sends all received info back.
+         * <p>
+         * /api/echo
          */
         public static final String ECHO_API = "/api/echo";
+
+        /**
+         * API that reports current server time.
+         * <p>
+         * /api/time
+         */
+        public static final String TIME_API = "/api/time";
     }
     
     public static class UI {
