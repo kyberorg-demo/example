@@ -20,18 +20,6 @@ public final class App {
     }
 
     /**
-     * MIME Types.
-     *
-     * @since 1.0
-     */
-    public static class MimeType {
-        /**
-         * JSON constant.
-         */
-        public static final String JSON = "application/json";
-    }
-
-    /**
      * Application property constants.
      */
     public static class Properties {

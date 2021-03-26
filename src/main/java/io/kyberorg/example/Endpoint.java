@@ -16,6 +16,11 @@ public class Endpoint {
          * /api/status
          */
         public static final String STATUS_API = "/api/status";
+
+        /**
+         * API that sends all received info back.
+         */
+        public static final String ECHO_API = "/api/echo";
     }
     
     public static class UI {

@@ -1,10 +1,10 @@
 package io.kyberorg.example.api.status;
 
-import io.kyberorg.example.App;
 import io.kyberorg.example.Endpoint;
-import io.kyberorg.example.util.SystemStatus;
 import io.kyberorg.example.dto.StatusDTO;
 import io.kyberorg.example.service.StatusService;
+import io.kyberorg.example.util.SystemStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,7 +18,7 @@ public class GetStatusRestController {
         this.statusService = statusService;
     }
 
-    @GetMapping(path = Endpoint.Api.STATUS_API, produces = App.MimeType.JSON)
+    @GetMapping(path = Endpoint.Api.STATUS_API, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<StatusDTO> getStatus() {
         SystemStatus applicationStatus = statusService.getApplicationStatus();
         SystemStatus databaseStatus = statusService.getDatabaseStatus();
