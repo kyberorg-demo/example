@@ -17,15 +17,20 @@ jobs:
       - name: Complile JAR
         run: mvn --batch-mode --update-snapshots clean package -P production,noTesting
 
+      - name: Login to DockerHub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.HUB_USERNAME }}
+          password: ${{ secrets.HUB_PASSWORD }}
+
       - name: Build and push docker image
         id: docker_build
-        uses: VaultVulp/gp-docker-action@1.1.7
+        uses: docker/build-push-action@v2
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          image-name: example
-          image-tag: edge
-          dockerfile: Dockerfile.DEV
-          build-context: ./
+          context: ./
+          file: Dockerfile.DEV
+          push: true
+          tags: kyberorg/example-app:egde
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
