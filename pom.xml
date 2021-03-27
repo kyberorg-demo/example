@@ -181,7 +181,7 @@
         <profile>
             <id>noTesting</id>
             <activation>
-                <activeByDefault>true</activeByDefault>
+                <activeByDefault>false</activeByDefault>
             </activation>
             <properties>
                 <maven.test.skip>true</maven.test.skip>
