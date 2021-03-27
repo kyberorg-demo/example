@@ -1,0 +1,81 @@
+name: "Ship and Test - Dev"
+
+on:
+  push:
+    branches-ignore:
+      - trunk
+
+jobs:
+  ship2dev:
+    name: Ship::Dev
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Complile JAR
+        run: mvn --batch-mode --update-snapshots clean package -P production,noTesting
+
+      - name: Build and push docker image
+        id: docker_build
+        uses: docker/build-push-action@v2
+        with:
+          context: ./
+          file: Dockerfile.DEV
+          push: true
+          tags: kyberorg/yalsee:dev
+          username: $ {{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          registry: docker.pkg.github.com
+          repository: kyberorg/example/example
+          tag_with_ref: true
+
+      - name: Image digest
+        run: echo ${{ steps.docker_build.outputs.digest }}
+
+      - name: Deploy
+        uses: wei/curl@master
+        with:
+          args: -X POST ${{ secrets.DEV_DEPLOY_HOOK }}
+
+      - name: Get deployed commit SHA
+        id: deployed_commit
+        run: echo "::set-output name=sha::$(echo $GITHUB_SHA | cut -c1-7)"
+
+      - name: Wait for site appears online
+        uses: kyberorg/wait_for_new_version@v1.1
+        with:
+          url: https://dev-example.kyberorg.io
+          responseCode: 200
+          timeout: 120
+          interval: 1.5
+          hasActuator: true
+          commitSha: ${{ steps.deployed_commit.outputs.sha }}
+
+      - name: Test App
+        continue-on-error: true
+        run:  mvn -Dtest.url=https://dev-example.kyberorg.io -Dgrid.hostname=http://127.0.0.1:4444 -Dselenide.browser=chrome -Dtest.buildName=example-${{ github.run_id }} -Dsurefire.rerunFailingTestsCount=2 clean test
+
+      - name: Publish Screenshots of failing tests, if any
+        uses: actions/upload-artifact@v2
+        continue-on-error: true
+        with:
+          name: failedTests
+          path: target/reports/**/*.png
+          if-no-files-found: ignore
+
+      - name: Publish Unit Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v1.7
+        if: always()
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          check_name: Dev Unit Test Results
+          comment_title: Dev Unit Test Statistics
+          hide_comments: all but latest
+          comment_on_pr: true
+          test_changes_limit: 5
+          files: target/surefire-reports/**/*.xml
+          report_individual_runs: true
+          deduplicate_classes_by_file_name: false
+          check_run_annotations: all tests, skipped tests
