@@ -119,6 +119,7 @@
 	</dependencyManagement>
 
 	<build>
+        <finalName>example.jar</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
@@ -131,7 +132,19 @@
 						</exclude>
 					</excludes>
 				</configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>build-info</goal>
+                        </goals>
+                    </execution>
+                </executions>
 			</plugin>
+            <!-- Git info in actuator -->
+            <plugin>
+                <groupId>pl.project13.maven</groupId>
+                <artifactId>git-commit-id-plugin</artifactId>
+            </plugin>
 		</plugins>
 	</build>
 
