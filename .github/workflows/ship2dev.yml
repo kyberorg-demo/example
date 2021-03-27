@@ -30,7 +30,7 @@ jobs:
           context: ./
           file: Dockerfile.DEV
           push: true
-          tags: kyberorg/example-app:egde
+          tags: kyberorg/example-app:edge
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
