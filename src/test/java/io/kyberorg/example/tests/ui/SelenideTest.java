@@ -22,6 +22,8 @@ public abstract class SelenideTest {
     private static final String SELENIDE_BROWSER =
             System.getProperty(TestApp.Properties.Selenide.BROWSER, TestApp.Defaults.Selenide.BROWSER);
 
+    private static final int SELENIDE_TIMEOUT = 4000;
+
     /**
      * Common Runner Setup and Info.
      */
@@ -29,7 +31,7 @@ public abstract class SelenideTest {
     public static void setUp() {
         Configuration.baseUrl = BASE_URL;
         Configuration.reportsFolder = "target/reports";
-        Configuration.timeout = 4000;
+        Configuration.timeout = SELENIDE_TIMEOUT;
         Configuration.browser = SELENIDE_BROWSER;
         Configuration.startMaximized = true;
         //critical for Vaadin input

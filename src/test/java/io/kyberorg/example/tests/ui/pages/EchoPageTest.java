@@ -12,7 +12,7 @@ import static io.kyberorg.example.tests.ui.pageobjects.Vaadin.waitForVaadin;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
- * Testing /echo page
+ * Testing /echo page.
  */
 @SpringBootTest
 public class EchoPageTest extends SelenideTest {
@@ -28,7 +28,7 @@ public class EchoPageTest extends SelenideTest {
     }
 
     /**
-     * Testing initial visual state
+     * Testing initial visual state.
      */
     @Test
     public void visualStateTest() {
@@ -54,6 +54,9 @@ public class EchoPageTest extends SelenideTest {
         assertEquals(result, inputValue);
     }
 
+    /**
+     * On successful send - input should be cleared.
+     */
     @Test
     public void onValidSendInputShouldBeCleared() {
         String inputValue = "WeSendYouOurLove";

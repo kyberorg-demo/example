@@ -24,8 +24,8 @@ public class TimePage extends VerticalLayout {
     private final TimeService timeService;
 
     private final H2 title = new H2("Time Page");
-    private final Span aboutSpan = new Span("This page implements Daytime Protocol aka TCP/13 aka RFC868. " +
-            "Returns current time.");
+    private final Span aboutSpan = new Span("This page implements Daytime Protocol aka TCP/13 aka RFC868. "
+            + "Returns current time.");
 
     private final HorizontalLayout timeNowLine = new HorizontalLayout();
     private final Span timeLabel = new Span("Time now is:");
@@ -36,7 +36,7 @@ public class TimePage extends VerticalLayout {
      *
      * @param timeService service for getting time.
      */
-    public TimePage(TimeService timeService) {
+    public TimePage(final TimeService timeService) {
         this.timeService = timeService;
         init();
         initState();

@@ -43,7 +43,7 @@ public class StatusPage extends VerticalLayout {
      *
      * @param statusService services for getting component's status
      */
-    public StatusPage(StatusService statusService) {
+    public StatusPage(final StatusService statusService) {
         this.statusService = statusService;
 
         init();
@@ -66,11 +66,11 @@ public class StatusPage extends VerticalLayout {
         SystemStatus databaseStatus = statusService.getDatabaseStatus();
         SystemStatus randomStatus = statusService.getRandomStatus();
 
-        if(applicationStatus == SystemStatus.UP &&
-                databaseStatus == SystemStatus.UP && randomStatus == SystemStatus.UP) {
+        if (applicationStatus == SystemStatus.UP
+                && databaseStatus == SystemStatus.UP && randomStatus == SystemStatus.UP) {
             appendTitleWithText("It works!");
-        } else if (applicationStatus == SystemStatus.DOWN ||
-                databaseStatus == SystemStatus.DOWN || randomStatus == SystemStatus.DOWN) {
+        } else if (applicationStatus == SystemStatus.DOWN
+                || databaseStatus == SystemStatus.DOWN || randomStatus == SystemStatus.DOWN) {
             appendTitleWithText("Some stuff is broken");
         } else {
             appendTitleWithText("App is DOWN");
@@ -122,8 +122,8 @@ public class StatusPage extends VerticalLayout {
         randomComponentStatusLine.add(text, randomComponentStatusText);
     }
 
-    private void formatConditionally(HasStyle component, SystemStatus status) {
-        if(status == SystemStatus.UP) {
+    private void formatConditionally(final HasStyle component, final SystemStatus status) {
+        if (status == SystemStatus.UP) {
             component.addClassName("green");
         } else {
             component.addClassName("red");

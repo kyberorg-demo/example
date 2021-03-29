@@ -31,7 +31,7 @@ public class StatusPageTest extends SelenideTest {
     }
 
     /**
-     * Testing initial visual state
+     * Testing initial visual state.
      */
     @Test
     public void visualStateTest() {
@@ -65,7 +65,7 @@ public class StatusPageTest extends SelenideTest {
         testStatus(StatusPage.RANDOM_COMPONENT_STATUS_TEXT);
     }
 
-    private void testStatus(SelenideElement statusTextElement) {
+    private void testStatus(final SelenideElement statusTextElement) {
         switch (statusTextElement.getText()) {
             case "UP":
                 statusTextElement.shouldHave(cssClass("green"));

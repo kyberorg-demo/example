@@ -10,12 +10,12 @@ public enum SystemStatus {
     DOWN();
 
     /**
-     * Converts boolean status to UP or DOWN
+     * Converts boolean status to UP or DOWN.
      *
      * @param rawStatus boolean with raw status from DB.
      * @return {@link #UP} if rawStatus if true, {@link #DOWN} if false.
      */
-    public static SystemStatus fromBoolean(boolean rawStatus) {
+    public static SystemStatus fromBoolean(final boolean rawStatus) {
         return rawStatus ? UP : DOWN;
     }
 }

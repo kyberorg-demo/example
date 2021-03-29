@@ -4,7 +4,7 @@ import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Selenide.$;
 
-public class EchoPage {
+public final class EchoPage {
 
     private EchoPage() {
         throw new UnsupportedOperationException("Utility class");

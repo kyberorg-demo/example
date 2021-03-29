@@ -16,6 +16,9 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 public class EchoApiTest extends UnirestTest {
 
+    /**
+     * Tests that API returns status 200.
+     */
     @SuppressWarnings("rawtypes")
     @Test
     public void echoReturnsCode200() {
@@ -24,6 +27,9 @@ public class EchoApiTest extends UnirestTest {
         assertEquals(STATUS_200, result.getStatus());
     }
 
+    /**
+     * Tests that returned body is same as sent body.
+     */
     @Test
     public void echoWithBodyReturnsSameBody() {
         String stringBody = "StringBody";
@@ -34,6 +40,9 @@ public class EchoApiTest extends UnirestTest {
         assertEquals(stringBody, result.getBody());
     }
 
+    /**
+     * Tests that on empty body, API returns nothing.
+     */
     @Test
     public void echoWithoutBodyReturnsNothing() {
         HttpRequestWithBody request = Unirest.post(TEST_URL + Endpoint.Api.ECHO_API);

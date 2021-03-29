@@ -114,7 +114,7 @@ public class MainView extends AppLayout implements BeforeEnterObserver, PageConf
     }
 
     @Override
-    public void configurePage(InitialPageSettings settings) {
+    public void configurePage(final InitialPageSettings settings) {
         settings.addFavIcon("icon", "/icons/favicon-32x32.png", "32x32");
         settings.addLink("shortcut icon", "/icons/favicon-16x16.png");
         settings.addLink("apple-touch-icon", "/icons/apple-touch-icon.png");

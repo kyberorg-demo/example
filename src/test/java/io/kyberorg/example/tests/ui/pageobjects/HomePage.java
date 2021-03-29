@@ -6,7 +6,7 @@ import com.codeborne.selenide.SelenideElement;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-public class HomePage {
+public final class HomePage {
 
     private HomePage() {
         throw new UnsupportedOperationException("Utility class");

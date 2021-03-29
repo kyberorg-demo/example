@@ -36,7 +36,7 @@ public class SitePageItem extends Composite<RouterLink> {
      * @param text string with text to display within component.
      * @param target page to redirect to.
      */
-    public SitePageItem(VaadinIcon icon, String text, Class<? extends Component> target) {
+    public SitePageItem(final VaadinIcon icon, final String text, final Class<? extends Component> target) {
         this.icon = icon;
         this.text = text;
         this.target = target;

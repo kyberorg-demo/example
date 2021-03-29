@@ -9,7 +9,7 @@ import static com.codeborne.selenide.Selenide.$;
  *
  * @since 1.0
  */
-public class StatusPage {
+public final class StatusPage {
 
     private StatusPage() {
         throw new UnsupportedOperationException("Utility class");

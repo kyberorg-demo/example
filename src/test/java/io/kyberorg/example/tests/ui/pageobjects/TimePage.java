@@ -9,7 +9,7 @@ import static com.codeborne.selenide.Selenide.$;
  *
  * @since 1.0
  */
-public class TimePage {
+public final class TimePage {
 
     private TimePage() {
         throw new UnsupportedOperationException("Utility class");

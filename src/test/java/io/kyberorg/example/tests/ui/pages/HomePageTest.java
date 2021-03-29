@@ -18,6 +18,8 @@ import static io.kyberorg.example.tests.ui.pageobjects.Vaadin.waitForVaadin;
 @SpringBootTest
 public class HomePageTest extends SelenideTest {
 
+    private static final int NUMBER_OF_ELEMENTS_AT_HOME_PAGE = 3;
+
     /**
      * Test Setup.
      */
@@ -34,6 +36,6 @@ public class HomePageTest extends SelenideTest {
     @Test
     public void urlWithSlashWillOpenHomePage() {
         HomePage.PAGE_TITLE.should(exist);
-        HomePage.SITE_PAGE_ITEMS.shouldHaveSize(3);
+        HomePage.SITE_PAGE_ITEMS.shouldHaveSize(NUMBER_OF_ELEMENTS_AT_HOME_PAGE);
     }
 }

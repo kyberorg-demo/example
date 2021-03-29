@@ -10,7 +10,7 @@ import java.util.Date;
  *
  * @since 1.0
  */
-public class TestUtils {
+public final class TestUtils {
     private TestUtils() {
         throw new UnsupportedOperationException("Utility class");
     }

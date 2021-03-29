@@ -16,7 +16,7 @@ import static io.kyberorg.example.App.HttpCode.STATUS_200;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Testing Time API (/api/time)
+ * Testing Time API (/api/time).
  */
 class TimeApiTest extends UnirestTest {
 

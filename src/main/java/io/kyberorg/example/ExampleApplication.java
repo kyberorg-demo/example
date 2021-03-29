@@ -11,7 +11,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class ExampleApplication {
 
-	public static void main(String[] args) {
+    /**
+     * Start Point.
+     *
+     * @param args command line arguments
+     */
+	public static void main(final String[] args) {
 		SpringApplication.run(ExampleApplication.class, args);
 	}
 
