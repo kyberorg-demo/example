@@ -3,7 +3,7 @@ name: "Ship and Test - Dev"
 on:
   push:
     branches-ignore:
-      - trun
+      - trunk
   pull_request:
     branches:
       - trunk
