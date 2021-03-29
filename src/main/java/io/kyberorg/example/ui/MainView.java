@@ -28,6 +28,11 @@ import io.kyberorg.example.util.AppUtils;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Application layout with (NavBar, Menu and Content) View.
+ *
+ * @since 1.0
+ */
 @SpringComponent
 @UIScope
 @Viewport("width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes")
@@ -47,7 +52,7 @@ public class MainView extends AppLayout implements BeforeEnterObserver, PageConf
     /**
      * Creates Main Application (NavBar, Menu and Content) View.
      *
-     * @param appUtils application utils for determine dev mode
+     * @param appUtils application utils for getting site title.
      */
     public MainView(final AppUtils appUtils) {
         String siteTitle = appUtils.getEnv().getProperty(App.Properties.APP_SITE_TITLE, "example").toUpperCase();

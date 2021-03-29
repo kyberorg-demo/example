@@ -31,11 +31,29 @@ public class Endpoint {
          */
         public static final String TIME_API = "/api/time";
     }
-    
+
+    /**
+     * User Interface Page.
+     */
     public static class UI {
+        /**
+         * Web page, that opens by default.
+         */
         public static final String HOME_PAGE = "";
+
+        /**
+         * Time Page.
+         */
         public static final String TIME_PAGE = "time";
+
+        /**
+         * Echo Page.
+         */
         public static final String ECHO_PAGE = "echo";
+
+        /**
+         * Status Page.
+         */
         public static final String STATUS_PAGE = "status";
     }
 }

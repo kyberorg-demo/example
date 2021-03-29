@@ -5,6 +5,11 @@ import lombok.Getter;
 
 import javax.persistence.*;
 
+/**
+ * Status table model.
+ *
+ * @since 1.0
+ */
 @Data
 @Entity
 @Table(name = "status")

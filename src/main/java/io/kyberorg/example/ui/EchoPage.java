@@ -17,7 +17,11 @@ import com.vaadin.flow.spring.annotation.UIScope;
 import io.kyberorg.example.Endpoint;
 import org.apache.commons.lang3.StringUtils;
 
-
+/**
+ * Echo Page.
+ *
+ * @since 1.0
+ */
 @SpringComponent
 @UIScope
 @PageTitle("ExampleApp: Echo Page")
@@ -36,6 +40,9 @@ public class EchoPage extends VerticalLayout {
     private final Span resultLabelSpan = new Span("Result:");
     private final Span resultSpan = new Span();
 
+    /**
+     * Creates echo page.
+     */
     public EchoPage() {
         init();
         initControls();

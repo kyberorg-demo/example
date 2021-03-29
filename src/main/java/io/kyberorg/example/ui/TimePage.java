@@ -11,6 +11,11 @@ import com.vaadin.flow.spring.annotation.UIScope;
 import io.kyberorg.example.Endpoint;
 import io.kyberorg.example.service.TimeService;
 
+/**
+ * Time Page.
+ *
+ * @since 1.0
+ */
 @SpringComponent
 @UIScope
 @PageTitle("ExampleApp: Time Page")
@@ -26,7 +31,11 @@ public class TimePage extends VerticalLayout {
     private final Span timeLabel = new Span("Time now is:");
     private final Span timeSpan = new Span();
 
-
+    /**
+     * Creates Time Page.
+     *
+     * @param timeService service for getting time.
+     */
     public TimePage(TimeService timeService) {
         this.timeService = timeService;
         init();

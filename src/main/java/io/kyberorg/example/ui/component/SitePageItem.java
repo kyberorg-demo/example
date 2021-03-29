@@ -10,8 +10,14 @@ import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.dom.ElementConstants;
 import com.vaadin.flow.router.RouterLink;
+import io.kyberorg.example.ui.HomePage;
 import lombok.EqualsAndHashCode;
 
+/**
+ * Vaadin's component for {@link HomePage}.
+ *
+ * @since 1.0
+ */
 @CssImport("./css/site_page_item.css")
 @EqualsAndHashCode(callSuper = true)
 public class SitePageItem extends Composite<RouterLink> {
@@ -23,6 +29,13 @@ public class SitePageItem extends Composite<RouterLink> {
     private Icon i;
     private Span textSpan;
 
+    /**
+     * Spring's constructor.
+     *
+     * @param icon {@link VaadinIcon} to display within component.
+     * @param text string with text to display within component.
+     * @param target page to redirect to.
+     */
     public SitePageItem(VaadinIcon icon, String text, Class<? extends Component> target) {
         this.icon = icon;
         this.text = text;

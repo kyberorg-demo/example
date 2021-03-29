@@ -4,6 +4,11 @@ import lombok.Getter;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
+/**
+ * Application utilities.
+ *
+ * @since 1.0
+ */
 @Component
 public class AppUtils {
     @Getter

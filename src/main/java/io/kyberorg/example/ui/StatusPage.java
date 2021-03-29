@@ -14,6 +14,11 @@ import io.kyberorg.example.Endpoint;
 import io.kyberorg.example.service.StatusService;
 import io.kyberorg.example.util.SystemStatus;
 
+/**
+ * Status Page.
+ *
+ * @since 1.0
+ */
 @SpringComponent
 @UIScope
 @PageTitle("ExampleApp: Status Page")
@@ -33,6 +38,11 @@ public class StatusPage extends VerticalLayout {
     private Span databaseStatusText;
     private Span randomComponentStatusText;
 
+    /**
+     * Creates Status Page.
+     *
+     * @param statusService services for getting component's status
+     */
     public StatusPage(StatusService statusService) {
         this.statusService = statusService;
 

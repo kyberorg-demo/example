@@ -11,11 +11,17 @@ import com.vaadin.flow.spring.annotation.UIScope;
 import io.kyberorg.example.Endpoint;
 import io.kyberorg.example.ui.component.SitePageItem;
 
+/**
+ * Home Page.
+ */
 @SpringComponent
 @UIScope
 @PageTitle("ExampleApp: Home Page")
 @Route(value = Endpoint.UI.HOME_PAGE, layout = MainView.class)
 public class HomePage extends VerticalLayout {
+    /**
+     * Creates Home Page.
+     */
     public HomePage() {
         H2 title = new H2("Home Page");
         HorizontalLayout stuff = new HorizontalLayout();

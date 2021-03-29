@@ -9,15 +9,31 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * API that report application state.
+ *
+ * @since 1.0
+ */
 @RestController
 public class GetStatusRestController {
 
     private final StatusService statusService;
 
-    public GetStatusRestController(StatusService statusService) {
+    /**
+     * Spring Constructor.
+     *
+     * @param statusService autowired service that provide component's state.
+     *      *
+     */
+    public GetStatusRestController(final StatusService statusService) {
         this.statusService = statusService;
     }
 
+    /**
+     * GET /api/status Endpoint.
+     *
+     * @return JSON with status.
+     */
     @GetMapping(path = Endpoint.Api.STATUS_API, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<StatusDTO> getStatus() {
         SystemStatus applicationStatus = statusService.getApplicationStatus();
