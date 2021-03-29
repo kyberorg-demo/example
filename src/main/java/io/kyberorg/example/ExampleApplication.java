@@ -16,8 +16,8 @@ public class ExampleApplication {
      *
      * @param args command line arguments
      */
-	public static void main(final String[] args) {
-		SpringApplication.run(ExampleApplication.class, args);
-	}
+    public static void main(final String[] args) {
+        SpringApplication.run(ExampleApplication.class, args);
+    }
 
 }
