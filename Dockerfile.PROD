@@ -2,9 +2,6 @@ ARG JAVA_BASE=11-jre-openj9
 FROM adoptopenjdk:${JAVA_BASE}
 ENV JAVA_VERSION=${JAVA_BASE}
 
-RUN addgroup -S spring && adduser -S spring -G spring
-USER spring:spring
-
 ARG JAR_FILE=target/*.jar
 COPY ${JAR_FILE} app.jar
 COPY ./docker-entrypoint.sh /
@@ -16,6 +13,11 @@ RUN apt-get update && \
     apt-get install -y haveged netcat curl jq && \
     apt -y autoremove && \
     rm -rf /var/lib/apt/lists/*
+
+RUN groupadd spring && useradd --create-home --shell  /bin/bash --gid spring spring && \
+    chown spring:spring /docker-entrypoint.sh && chown spring:spring /app.jar
+
+USER spring:spring
 
 ENTRYPOINT "/docker-entrypoint.sh"
 
