@@ -1,0 +1,13 @@
+{
+  "properties": [
+    {
+      "name": "app.server.url",
+      "type": "java.lang.String",
+      "description": "URL where application runs resides. Needed for making calls from UI to API."
+    },
+    {
+      "name": "app.site-title",
+      "type": "java.lang.String",
+      "description": "String with application title. Displays at Main Page."
+    }
+  ] }

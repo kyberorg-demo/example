@@ -1,0 +1,109 @@
+<!-- Based on https://github.com/vlukashov/vaadin-splash-screen-demo/ -->
+<div id="splash-screen">
+    <div class="logo-wrapper">
+        <!-- back layer: defines the colors when the logo is revealed -->
+        <div class="logo-background"></div>
+
+        <!-- progress layer: defines the grey color which covers the actual logo colors
+             initially and slides to the right over time, making it look like a progress bar
+             -->
+        <div class="logo-progress"></div>
+
+        <!-- opaque layer that covers the progress layer as it shifts away from the logo
+             It's purpose is to make the grey progress div invisible, so it's positioned to
+             the right from the logo -->
+        <div class="logo-guard"></div>
+
+        <!-- front layer: defines the shape of the Vaadin logo
+             This is a negative image of the Yalsee logo, this can be done with Krita.
+             Start from white background and use eraser.
+             Base64 version used to avoid loading "external" image -->
+        <div class="logo-mask">
+            <img src="data:image/png;base64,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"
+                 width="160" height="44" alt="loading..." />
+        </div>
+    </div>
+
+    <style>
+        .logo-* {
+            box-sizing: border-box;
+        }
+
+        #splash-screen {
+            box-sizing: border-box;
+            background: #ffffff;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            z-index: 100000;
+        }
+
+        /* Used in MainView.java */
+        /*noinspection CssUnusedSymbol*/
+        #splash-screen.loaded {
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .logo-wrapper {
+            width: 160px;
+            height: 44px;
+        }
+
+        .logo-background {
+            position: absolute;
+            width: 155px;
+            height: 38px;
+        }
+
+        .logo-progress,
+        .logo-mask {
+            position: absolute;
+            width: 160px;
+            height: 44px;
+            box-sizing: border-box;
+        }
+
+        .logo-guard {
+            position: absolute;
+            margin-left: 157px;
+            width: 210px;
+            height: 44px;
+            background-color: #fff;
+        }
+
+        .logo-background {
+            background-color: #1676F3;
+            margin: 3px;
+            border-right: 38px solid #00b4f0;
+            animation: logo-fadein 0.3s step-start 0.3s forwards;
+            opacity: 0;
+        }
+
+        .logo-progress {
+            background-color: #e5e8e8;
+            animation: logo-fadein 0.3s ease-in forwards,
+            logo-progress 1s ease-out 0.3s forwards;
+            animation-delay: 0s, 0.3s;
+            border: 5px solid #fff;
+            border-left: none;
+        }
+
+        @keyframes logo-fadein {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes logo-progress {
+            from { transform: translateX(0); }
+            to { transform: translateX(200px); }
+        }
+    </style>
+</div>

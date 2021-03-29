@@ -1,0 +1,19 @@
+/* TEAM */
+    Idea and developer: Alexander Muravya (aka Kyberorg)
+    Contact: root [at] kyberorg [dot] io
+    Twitter: @kyberorg
+    Facebook: kyberorg
+    Location: Tallinn, Estonia
+
+/* THANKS */
+    JetBrains (for IDEA)
+    Codeborne (for Selenide and DevClub)
+    Spring Developers (for Spring Boot)
+    Vaadin (for Vaadin)
+
+/* SITE */
+    Language: English
+    Standards: HTML5, CSS3
+    Components: Spring framework, Vaadin, Java, Selenide
+    Software: IDEA
+    Hosted on: Hetzner
