@@ -4,9 +4,6 @@ on:
   push:
     branches-ignore:
       - trunk
-  pull_request:
-    branches:
-      - trunk
 
 jobs:
   ship2dev:
