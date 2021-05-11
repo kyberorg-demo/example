@@ -11,7 +11,7 @@
 
 	<groupId>io.kyberorg</groupId>
 	<artifactId>example</artifactId>
-	<version>1.0</version>
+	<version>1.1</version>
 
     <name>Example App</name>
 	<description>Spring Boot Application with Vaadin, REST and DB</description>
