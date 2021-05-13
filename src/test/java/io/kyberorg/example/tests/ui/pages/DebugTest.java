@@ -19,17 +19,21 @@ public class DebugTest extends SelenideTest {
     @BeforeEach
     public void beforeTest() {
         tuneDriverWithCapabilities();
-        open("https://google.com");
     }
 
-    /**
-     * Testing initial visual state.
-     */
     @Test
     public void visualStateTest() {
-        open("http://172.0.0.1");
-        open("https://172.0.0.1");
         open("https://dev-example.kyberorg.io");
+    }
+
+    @Test
+    public void http() {
+        open("http://172.17.0.1");
+    }
+
+    @Test
+    public void https() {
+        open("https://172.17.0.1");
     }
 
 }
