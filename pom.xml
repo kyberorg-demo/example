@@ -11,14 +11,14 @@
 
 	<groupId>io.kyberorg</groupId>
 	<artifactId>example</artifactId>
-	<version>1.0</version>
+	<version>1.1</version>
 
     <name>Example App</name>
 	<description>Spring Boot Application with Vaadin, REST and DB</description>
 
     <properties>
 		<java.version>11</java.version>
-		<vaadin.version>14.5.1</vaadin.version>
+		<vaadin.version>14.5.5</vaadin.version>
 	</properties>
 
     <dependencies>
@@ -82,6 +82,7 @@
         <dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
+                        <version>1.18.20</version>
 			<optional>true</optional>
 		</dependency>
 
