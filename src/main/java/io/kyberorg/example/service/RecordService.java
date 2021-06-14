@@ -33,8 +33,8 @@ public class RecordService {
      * @param text record's text
      * @return true - if written successfully, false - if failed.
      */
-    public boolean writeRecord(String author, String text) {
-        if(StringUtils.isAllBlank(author, text)) {
+    public boolean writeRecord(final String author, final String text) {
+        if (StringUtils.isAllBlank(author, text)) {
             return false;
         }
 

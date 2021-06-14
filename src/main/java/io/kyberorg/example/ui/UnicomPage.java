@@ -57,7 +57,7 @@ public class UnicomPage extends VerticalLayout {
      *
      * @param recordService service for writing records.
      */
-    public UnicomPage(RecordService recordService) {
+    public UnicomPage(final RecordService recordService) {
         this.recordService = recordService;
 
         init();
@@ -90,7 +90,7 @@ public class UnicomPage extends VerticalLayout {
         broadcast.setOpened(true);
     }
 
-    private void onNameSave(ClickEvent<Button> buttonClickEvent) {
+    private void onNameSave(final ClickEvent<Button> buttonClickEvent) {
         String nameValue = nameInput.getValue();
         if (StringUtils.isNotBlank(nameValue)) {
             nameLabel.setText("Name:");
@@ -130,7 +130,7 @@ public class UnicomPage extends VerticalLayout {
 
     private void updateBroadcast() {
         long numOfRecords = recordService.countRecords();
-        broadcast.setSummaryText("Broadcast ("+numOfRecords+")");
+        broadcast.setSummaryText("Broadcast (" + numOfRecords + ")");
 
         if (numOfRecords > 0) {
             broadcast.setContent(new Text(""));

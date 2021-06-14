@@ -45,7 +45,8 @@ public class AppUtils {
     /**
      * Shows successful banner.
      *
-     * @param text text to show (optional)
+     * @param text text to show (optional).
+     * @return success banner.
      */
     public static Notification showSuccess(final Optional<String> text) {
         String bannerText = text.orElse("Operation successful");
@@ -54,7 +55,7 @@ public class AppUtils {
         return getNotification(bannerText, successBox);
     }
 
-    private static Notification getNotification(String bannerText, Notification notification) {
+    private static Notification getNotification(final String bannerText, final Notification notification) {
         notification.setPosition(Notification.Position.MIDDLE);
 
         HorizontalLayout layout = new HorizontalLayout();
