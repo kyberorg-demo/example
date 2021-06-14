@@ -55,6 +55,7 @@ public class UnicomPage extends VerticalLayout {
 
     private final RecordService recordService;
     private int messageCounter = 0;
+    private UI ui;
 
     /**
      * Creates unicom page.
@@ -133,29 +134,35 @@ public class UnicomPage extends VerticalLayout {
     @Override
     protected void onAttach(AttachEvent attachEvent) {
         super.onAttach(attachEvent);
+        ui = attachEvent.getUI();
         EventBus.getDefault().register(this);
     }
 
     @Override
     protected void onDetach(DetachEvent detachEvent) {
         super.onDetach(detachEvent);
+        ui = null;
         EventBus.getDefault().unregister(this);
     }
 
     @Subscribe
     public void onNewRecordSaved(final RecordSavedEvent event) {
         messageCounter++;
-        broadcast.setSummaryText("Broadcast (" + messageCounter + ")");
+        if(ui == null) return;
 
-        //clean default record
-        Optional<Component> firstComponent = broadcast.getContent().findFirst();
-        if(firstComponent.isPresent() && firstComponent.get() instanceof Text) {
-            broadcast.setContent(new Div());
-        }
-        Record record = event.getSavedRecord();
-        if(Objects.nonNull(record)) {
-            broadcast.addContent(new Div(new Text(record.getAuthor() + ": " + record.getRecord())));
-        }
+        ui.access(() -> {
+            broadcast.setSummaryText("Broadcast (" + messageCounter + ")");
+
+            //clean default record
+            Optional<Component> firstComponent = broadcast.getContent().findFirst();
+            if(firstComponent.isPresent() && firstComponent.get() instanceof Text) {
+                broadcast.setContent(new Div());
+            }
+            Record record = event.getSavedRecord();
+            if(Objects.nonNull(record)) {
+                broadcast.addContent(new Div(new Text(record.getAuthor() + ": " + record.getRecord())));
+            }
+        });
     }
 
     @SuppressWarnings("SameParameterValue")
