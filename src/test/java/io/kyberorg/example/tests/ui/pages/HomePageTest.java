@@ -18,7 +18,7 @@ import static io.kyberorg.example.tests.ui.pageobjects.Vaadin.waitForVaadin;
 @SpringBootTest
 public class HomePageTest extends SelenideTest {
 
-    private static final int NUMBER_OF_ELEMENTS_AT_HOME_PAGE = 3;
+    private static final int NUMBER_OF_ELEMENTS_AT_HOME_PAGE = 4;
 
     /**
      * Test Setup.
