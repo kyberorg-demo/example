@@ -21,10 +21,10 @@
             <column name="id" autoIncrement="true" type="int">
                 <constraints primaryKey="true" nullable="false" />
             </column>
-            <column name="author" type="varchar">
+            <column name="author" type="varchar(255)">
                 <constraints nullable="false" />
             </column>
-            <column name="record" type="varchar">
+            <column name="record" type="varchar(255)">
                 <constraints nullable="false" />
             </column>
         </createTable>

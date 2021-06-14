@@ -48,7 +48,7 @@ public class UnicomPage extends VerticalLayout {
     private final TextField input = new TextField();
     private final Button sendButton = new Button("Send");
 
-    private Details broadcast = new Details("Broadcast", new Text("Silence is gold..."));
+    private final Details broadcast = new Details("Broadcast", new Text("Silence is gold..."));
 
     private final RecordService recordService;
 
