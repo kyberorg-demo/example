@@ -30,7 +30,8 @@ public class HomePage extends VerticalLayout {
         SitePageItem timePageItem = new SitePageItem(VaadinIcon.CLOCK, "Time", TimePage.class);
         SitePageItem echoPageItem = new SitePageItem(VaadinIcon.EXCHANGE, "Echo", EchoPage.class);
         SitePageItem statusPageItem = new SitePageItem(VaadinIcon.SPARK_LINE, "Status", StatusPage.class);
-        stuff.add(timePageItem, echoPageItem, statusPageItem);
+        SitePageItem unicomPageItem = new SitePageItem(VaadinIcon.COMMENT, "Unicom", UnicomPage.class);
+        stuff.add(timePageItem, echoPageItem, statusPageItem, unicomPageItem);
         stuff.setMaxWidth("100%");
     }
 }
