@@ -55,5 +55,10 @@ public class Endpoint {
          * Status Page.
          */
         public static final String STATUS_PAGE = "status";
+
+        /**
+         * Unicom Page.
+         */
+        public static final String UNICOM_PAGE = "unicom";
     }
 }

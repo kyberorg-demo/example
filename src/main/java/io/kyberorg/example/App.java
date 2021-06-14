@@ -25,4 +25,11 @@ public final class App {
     public static class Properties {
         public static final String APP_SITE_TITLE = "app.site-title";
     }
+
+    /**
+     * Application constants.
+     */
+    public static class C {
+        public static final int INVALID_ID = -2;
+    }
 }
