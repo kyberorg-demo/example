@@ -1,7 +1,6 @@
 package io.kyberorg.example.ui;
 
-import com.vaadin.flow.component.ClickEvent;
-import com.vaadin.flow.component.Text;
+import com.vaadin.flow.component.*;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.details.Details;
 import com.vaadin.flow.component.html.Div;
@@ -15,13 +14,17 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.spring.annotation.SpringComponent;
 import com.vaadin.flow.spring.annotation.UIScope;
+import io.kyberorg.example.App;
 import io.kyberorg.example.Endpoint;
+import io.kyberorg.example.event.RecordSavedEvent;
 import io.kyberorg.example.model.Record;
 import io.kyberorg.example.service.RecordService;
 import io.kyberorg.example.util.AppUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
-import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -48,9 +51,10 @@ public class UnicomPage extends VerticalLayout {
     private final TextField input = new TextField();
     private final Button sendButton = new Button("Send");
 
-    private final Details broadcast = new Details("Broadcast", new Text("Silence is gold..."));
+    private final Details broadcast = new Details("Broadcast", new Text(App.C.EMPTY_BROADCAST_MESSAGE));
 
     private final RecordService recordService;
+    private int messageCounter = 0;
 
     /**
      * Creates unicom page.
@@ -86,7 +90,6 @@ public class UnicomPage extends VerticalLayout {
         input.setEnabled(false);
         sendButton.setEnabled(false);
 
-        updateBroadcast();
         broadcast.setOpened(true);
     }
 
@@ -117,7 +120,6 @@ public class UnicomPage extends VerticalLayout {
         if (StringUtils.isNotBlank(inputValue)) {
             boolean written = recordService.writeRecord(author, inputValue);
             if (written) {
-                updateBroadcast();
                 showSuccess("Written");
             } else {
                 showError("Failed to save record");
@@ -128,16 +130,31 @@ public class UnicomPage extends VerticalLayout {
         }
     }
 
-    private void updateBroadcast() {
-        long numOfRecords = recordService.countRecords();
-        broadcast.setSummaryText("Broadcast (" + numOfRecords + ")");
+    @Override
+    protected void onAttach(AttachEvent attachEvent) {
+        super.onAttach(attachEvent);
+        EventBus.getDefault().register(this);
+    }
 
-        if (numOfRecords > 0) {
-            broadcast.setContent(new Text(""));
-            List<Record> records = recordService.getAllRecords();
-            for (Record record : records) {
-                broadcast.addContent(new Div(new Text(record.getAuthor() + ": " + record.getRecord())));
-            }
+    @Override
+    protected void onDetach(DetachEvent detachEvent) {
+        super.onDetach(detachEvent);
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Subscribe
+    public void onNewRecordSaved(final RecordSavedEvent event) {
+        messageCounter++;
+        broadcast.setSummaryText("Broadcast (" + messageCounter + ")");
+
+        //clean default record
+        Optional<Component> firstComponent = broadcast.getContent().findFirst();
+        if(firstComponent.isPresent() && firstComponent.get() instanceof Text) {
+            broadcast.setContent(new Div());
+        }
+        Record record = event.getSavedRecord();
+        if(Objects.nonNull(record)) {
+            broadcast.addContent(new Div(new Text(record.getAuthor() + ": " + record.getRecord())));
         }
     }
 

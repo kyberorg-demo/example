@@ -30,6 +30,6 @@ public final class App {
      * Application constants.
      */
     public static class C {
-        public static final int INVALID_ID = -2;
+        public static final String EMPTY_BROADCAST_MESSAGE = "Silence is gold...";
     }
 }
