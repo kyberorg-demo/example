@@ -5,6 +5,7 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.details.Details;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H2;
+import com.vaadin.flow.component.html.Paragraph;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
@@ -17,6 +18,8 @@ import com.vaadin.flow.spring.annotation.UIScope;
 import io.kyberorg.example.App;
 import io.kyberorg.example.Endpoint;
 import io.kyberorg.example.event.RecordSavedEvent;
+import io.kyberorg.example.event.UserEntersChannelEvent;
+import io.kyberorg.example.event.UserLeavesChannelEvent;
 import io.kyberorg.example.model.Record;
 import io.kyberorg.example.service.RecordService;
 import io.kyberorg.example.util.AppUtils;
@@ -106,6 +109,8 @@ public class UnicomPage extends VerticalLayout {
 
             input.setEnabled(true);
             sendButton.setEnabled(true);
+
+            EventBus.getDefault().post(UserEntersChannelEvent.createWith(nameValue));
         } else {
             showError("Empty name is not valid");
         }
@@ -141,6 +146,7 @@ public class UnicomPage extends VerticalLayout {
     @Override
     protected void onDetach(DetachEvent detachEvent) {
         super.onDetach(detachEvent);
+        EventBus.getDefault().post(UserLeavesChannelEvent.createWith(nameSpan.getText()));
         ui = null;
         EventBus.getDefault().unregister(this);
     }
@@ -163,6 +169,19 @@ public class UnicomPage extends VerticalLayout {
                 broadcast.addContent(new Div(new Text(record.getAuthor() + ": " + record.getRecord())));
             }
         });
+    }
+
+    @Subscribe
+    public void onUserEntersChannel(UserEntersChannelEvent userEntersChannelEvent) {
+        if(ui == null) return;
+        ui.access(() -> broadcast.addContent(new Paragraph(String.format("User %s entered channel",
+                userEntersChannelEvent.getUsername()))));
+    }
+
+    public void onUserLeavesChannel(UserLeavesChannelEvent userLeavesChannelEvent) {
+        if(ui == null) return;
+        ui.access(() -> broadcast.addContent(new Paragraph(String.format("User %s left channel",
+                userLeavesChannelEvent.getUsername()))));
     }
 
     @SuppressWarnings("SameParameterValue")
