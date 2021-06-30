@@ -1,9 +1,11 @@
 package io.kyberorg.example.service;
 
 import io.kyberorg.example.dao.RecordDao;
+import io.kyberorg.example.event.RecordSavedEvent;
 import io.kyberorg.example.model.Record;
 import org.apache.commons.compress.utils.Lists;
 import org.apache.commons.lang3.StringUtils;
+import org.greenrobot.eventbus.EventBus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -42,6 +44,8 @@ public class RecordService {
         newRecord.setAuthor(author);
         newRecord.setRecord(text);
         recordDao.save(newRecord);
+
+        EventBus.getDefault().post(RecordSavedEvent.createWith(newRecord));
         return true;
     }
 
