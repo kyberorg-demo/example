@@ -137,20 +137,25 @@ public class UnicomPage extends VerticalLayout {
     }
 
     @Override
-    protected void onAttach(AttachEvent attachEvent) {
+    protected void onAttach(final AttachEvent attachEvent) {
         super.onAttach(attachEvent);
         ui = attachEvent.getUI();
         EventBus.getDefault().register(this);
     }
 
     @Override
-    protected void onDetach(DetachEvent detachEvent) {
+    protected void onDetach(final DetachEvent detachEvent) {
         super.onDetach(detachEvent);
         EventBus.getDefault().post(UserLeavesChannelEvent.createWith(nameSpan.getText()));
         ui = null;
         EventBus.getDefault().unregister(this);
     }
 
+    /**
+     * Triggers action on {@link RecordSavedEvent}.
+     *
+     * @param event event object
+     */
     @Subscribe
     public void onNewRecordSaved(final RecordSavedEvent event) {
         messageCounter++;
@@ -161,25 +166,36 @@ public class UnicomPage extends VerticalLayout {
 
             //clean default record
             Optional<Component> firstComponent = broadcast.getContent().findFirst();
-            if(firstComponent.isPresent() && firstComponent.get() instanceof Text) {
+            if (firstComponent.isPresent() && firstComponent.get() instanceof Text) {
                 broadcast.setContent(new Div());
             }
             Record record = event.getSavedRecord();
-            if(Objects.nonNull(record)) {
+            if (Objects.nonNull(record)) {
                 broadcast.addContent(new Div(new Text(record.getAuthor() + ": " + record.getRecord())));
             }
         });
     }
 
+    /**
+     * Triggers action on {@link UserEntersChannelEvent}.
+     *
+     * @param userEntersChannelEvent event object
+     */
     @Subscribe
-    public void onUserEntersChannel(UserEntersChannelEvent userEntersChannelEvent) {
-        if(ui == null) return;
+    public void onUserEntersChannel(final UserEntersChannelEvent userEntersChannelEvent) {
+        if (ui == null) return;
         ui.access(() -> broadcast.addContent(new Paragraph(String.format("User %s entered channel",
                 userEntersChannelEvent.getUsername()))));
     }
 
-    public void onUserLeavesChannel(UserLeavesChannelEvent userLeavesChannelEvent) {
-        if(ui == null) return;
+    /**
+     * Triggers action on {@link UserLeavesChannelEvent}.
+     *
+     * @param userLeavesChannelEvent event object
+     */
+    @Subscribe
+    public void onUserLeavesChannel(final UserLeavesChannelEvent userLeavesChannelEvent) {
+        if (ui == null) return;
         ui.access(() -> broadcast.addContent(new Paragraph(String.format("User %s left channel",
                 userLeavesChannelEvent.getUsername()))));
     }
