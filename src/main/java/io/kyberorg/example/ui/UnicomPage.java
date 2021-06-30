@@ -159,7 +159,7 @@ public class UnicomPage extends VerticalLayout {
     @Subscribe
     public void onNewRecordSaved(final RecordSavedEvent event) {
         messageCounter++;
-        if(ui == null) return;
+        if (ui == null) return;
 
         ui.access(() -> {
             broadcast.setSummaryText("Broadcast (" + messageCounter + ")");
