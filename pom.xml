@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.4.4</version>
+		<version>2.6.1</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
@@ -18,7 +18,7 @@
 
     <properties>
 		<java.version>11</java.version>
-		<vaadin.version>14.6.2</vaadin.version>
+		<vaadin.version>14.8.0</vaadin.version>
 	</properties>
 
     <dependencies>
@@ -82,15 +82,15 @@
         <dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-                        <version>1.18.20</version>
+			<version>1.18.22</version>
 			<optional>true</optional>
 		</dependency>
         
         <!-- EventBus -->
         <dependency>
             <groupId>org.greenrobot</groupId>
-            <artifactId>eventbus</artifactId>
-            <version>3.2.0</version>
+            <artifactId>eventbus-java</artifactId>
+            <version>3.3.1</version>
         </dependency>
 
         <!-- Spring Boot Testing Framework -->
@@ -103,14 +103,14 @@
         <dependency>
             <groupId>com.codeborne</groupId>
             <artifactId>selenide</artifactId>
-            <version>5.19.0</version>
+            <version>5.25.0</version>
             <scope>test</scope>
         </dependency>
         <!-- Unirest: REST calls -->
         <dependency>
             <groupId>com.konghq</groupId>
             <artifactId>unirest-java</artifactId>
-            <version>3.11.11</version>
+            <version>3.13.4</version>
         </dependency>
 	</dependencies>
 
