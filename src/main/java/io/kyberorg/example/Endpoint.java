@@ -60,5 +60,10 @@ public class Endpoint {
          * Unicom Page.
          */
         public static final String UNICOM_PAGE = "unicom";
+
+        /**
+         * Settings Page.
+         */
+        public static final String SETTINGS_PAGE = "settings";
     }
 }

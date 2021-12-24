@@ -2,6 +2,7 @@
   <configuration default="false" name="ExampleApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
     <module name="example" />
     <option name="SPRING_BOOT_MAIN_CLASS" value="io.kyberorg.example.ExampleApplication" />
+    <option name="ENABLE_JMX_AGENT" value="false"/>
     <option name="ALTERNATIVE_JRE_PATH" />
     <method v="2">
       <option name="Make" enabled="true" />
