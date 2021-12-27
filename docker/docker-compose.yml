@@ -7,9 +7,14 @@ services:
   app:
     build: ../
     environment:
-      SPRING_BOOT_PROFILES: local, actuator
+      SPRING_PROFILES_ACTIVE: local, actuator
+      REDIS_HOST: redis
+      REDIS_DB: 0
+      REDIS_PASSWORD: redis-password
     ports:
       - "8080:8080"
+    networks:
+      - net
   # Database
   db:
     image: library/mariadb:10.5.9
@@ -21,8 +26,6 @@ services:
     ports:
       - "3306:3306"
     environment:
-      PMA_USER: user
-      PMA_PASSWORD: pass
       MYSQL_DATABASE: example-app
       MYSQL_USER: example-user
       MYSQL_PASSWORD: example-password
@@ -40,5 +43,36 @@ services:
     environment:
       PMA_HOST: db
       MYSQL_ROOT_PASSWORD: rootPassword
+    networks:
+      - net
+  # redis
+  redis:
+    image: library/redis:6.2.6
+    command: [ "redis-server","--requirepass", "redis-password" ]
+    restart: always
+    ports:
+      - '6379:6379'
+    volumes:
+      # Adjust me (redis - is folder on host)
+      - ./redis:/data
+    environment:
+      MASTER: true
+      REDIS_AUTH: redis-password
+    networks:
+      - net
+  # phpRedisAdmin
+  phpredisadmin:
+    depends_on:
+      - redis
+    image: erikdubbelboer/phpredisadmin:v1.13.2
+    restart: always
+    ports:
+      - '9091:80'
+    environment:
+      REDIS_1_HOST: redis
+      REDIS_1_PORT: 6379
+      REDIS_1_AUTH: redis-password
+      ADMIN_USER: admin
+      ADMIN_PASS: redis-pass
     networks:
       - net
