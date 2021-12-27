@@ -40,3 +40,4 @@ webpack.config.js
 webpack.generated.js
 
 docker/app_db
+docker/redis
