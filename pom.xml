@@ -71,47 +71,54 @@
 			<scope>runtime</scope>
 		</dependency>
 
-        <!-- Application properties metadata -->
-        <dependency>
+		<!-- Application properties metadata -->
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-configuration-processor</artifactId>
 			<optional>true</optional>
 		</dependency>
 
-        <!-- Code autogenerator -->
-        <dependency>
+		<!-- Code autogenerator -->
+		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<version>1.18.22</version>
 			<optional>true</optional>
 		</dependency>
-        
-        <!-- EventBus -->
-        <dependency>
-            <groupId>org.greenrobot</groupId>
-            <artifactId>eventbus-java</artifactId>
-            <version>3.3.1</version>
-        </dependency>
 
-        <!-- Spring Boot Testing Framework -->
-        <dependency>
+		<!-- EventBus -->
+		<dependency>
+			<groupId>org.greenrobot</groupId>
+			<artifactId>eventbus-java</artifactId>
+			<version>3.3.1</version>
+		</dependency>
+
+		<!-- Toggle Button -->
+		<dependency>
+			<groupId>com.vaadin.componentfactory</groupId>
+			<artifactId>togglebutton</artifactId>
+			<version>1.0.1</version>
+		</dependency>
+
+		<!-- Spring Boot Testing Framework -->
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-        <!-- Selenide: best UI testing framework -->
-        <dependency>
-            <groupId>com.codeborne</groupId>
-            <artifactId>selenide</artifactId>
-            <version>5.25.0</version>
-            <scope>test</scope>
-        </dependency>
-        <!-- Unirest: REST calls -->
-        <dependency>
-            <groupId>com.konghq</groupId>
-            <artifactId>unirest-java</artifactId>
-            <version>3.13.4</version>
-        </dependency>
+		<!-- Selenide: best UI testing framework -->
+		<dependency>
+			<groupId>com.codeborne</groupId>
+			<artifactId>selenide</artifactId>
+			<version>5.25.0</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- Unirest: REST calls -->
+		<dependency>
+			<groupId>com.konghq</groupId>
+			<artifactId>unirest-java</artifactId>
+			<version>3.13.4</version>
+		</dependency>
 	</dependencies>
 
 	<dependencyManagement>
@@ -126,8 +133,15 @@
 		</dependencies>
 	</dependencyManagement>
 
+	<repositories>
+		<repository>
+			<id>vaadin-addons</id>
+			<url>https://maven.vaadin.com/vaadin-addons</url>
+		</repository>
+	</repositories>
+
 	<build>
-        <finalName>example.jar</finalName>
+		<finalName>example.jar</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
