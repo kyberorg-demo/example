@@ -11,23 +11,24 @@ import java.util.Optional;
 
 @RequiredArgsConstructor
 @Repository
-public class SettingsRedisDao {
-    public static final String HASH_NAME = "Settings";
+public class SettingsRedisDao extends RedisDao {
     private final RedisTemplate<String, Settings> redisTemplate;
 
+    private String hashName;
     private HashOperations<String, String, Settings> hashOperations;
 
     @PostConstruct
     private void init() {
         this.hashOperations = redisTemplate.opsForHash();
+        this.hashName = getHashName(Settings.class);
     }
 
     public void save(final Settings settings) {
-        hashOperations.put(HASH_NAME, settings.getSessionId(), settings);
+        hashOperations.put(hashName, settings.getSessionId(), settings);
     }
 
-    public Optional<Settings> get(String sessionId) {
-        return Optional.ofNullable(hashOperations.get(HASH_NAME, sessionId));
+    public Optional<Settings> get(final String sessionId) {
+        return Optional.ofNullable(hashOperations.get(hashName, sessionId));
     }
 
 }
