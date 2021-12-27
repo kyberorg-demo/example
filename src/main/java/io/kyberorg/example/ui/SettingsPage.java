@@ -66,7 +66,7 @@ public class SettingsPage extends VerticalLayout implements BeforeEnterObserver 
         setTheme(lightMode);
     }
 
-    private void setTheme(boolean setLightTheme) {
+    private void setTheme(final boolean setLightTheme) {
         UI ui = getUI().isPresent() ? getUI().get() : UI.getCurrent();
         if (ui == null) return;
 
