@@ -8,6 +8,8 @@ import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.icon.VaadinIcon;
+import com.vaadin.flow.component.page.AppShellConfigurator;
+import com.vaadin.flow.component.page.Inline;
 import com.vaadin.flow.component.page.Push;
 import com.vaadin.flow.component.page.Viewport;
 import com.vaadin.flow.component.tabs.Tab;
@@ -16,10 +18,8 @@ import com.vaadin.flow.router.BeforeEnterEvent;
 import com.vaadin.flow.router.BeforeEnterObserver;
 import com.vaadin.flow.router.HighlightConditions;
 import com.vaadin.flow.router.RouterLink;
-import com.vaadin.flow.server.InitialPageSettings;
+import com.vaadin.flow.server.AppShellSettings;
 import com.vaadin.flow.server.PWA;
-import com.vaadin.flow.server.PageConfigurator;
-import com.vaadin.flow.spring.annotation.SpringComponent;
 import com.vaadin.flow.spring.annotation.UIScope;
 import com.vaadin.flow.theme.Theme;
 import com.vaadin.flow.theme.lumo.Lumo;
@@ -34,7 +34,7 @@ import java.util.Map;
  *
  * @since 1.0
  */
-@SpringComponent
+//@SpringComponent
 @UIScope
 @Push
 @Viewport("width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes")
@@ -44,9 +44,9 @@ import java.util.Map;
         offlinePath = "offline-page.html",
         offlineResources = {"images/logo.png"},
         description = "Simple Spring Boot Application with REST, Vaadin and Database ")
-@Theme(value = Lumo.class, variant = Lumo.DARK)
+@Theme(themeClass = Lumo.class, variant = Lumo.DARK)
 @CssImport("./css/main_view.css")
-public class MainView extends AppLayout implements BeforeEnterObserver, PageConfigurator {
+public class MainView extends AppLayout implements BeforeEnterObserver, AppShellConfigurator {
 
     private final Tabs tabs = new Tabs();
     private final Map<Class<? extends Component>, Tab> tabToTarget = new HashMap<>();
@@ -118,7 +118,7 @@ public class MainView extends AppLayout implements BeforeEnterObserver, PageConf
     }
 
     @Override
-    public void configurePage(final InitialPageSettings settings) {
+    public void configurePage(final AppShellSettings settings) {
         settings.addFavIcon("icon", "/icons/favicon-32x32.png", "32x32");
         settings.addLink("shortcut icon", "/icons/favicon-16x16.png");
         settings.addLink("apple-touch-icon", "/icons/apple-touch-icon.png");
@@ -131,7 +131,7 @@ public class MainView extends AppLayout implements BeforeEnterObserver, PageConf
         settings.addMetaTag("theme-color", "#000000");
 
         //Splash (Loading) Screen
-        settings.addInlineFromFile("splash-screen.html", InitialPageSettings.WrapMode.NONE);
+        settings.addInlineFromFile("splash-screen.html", Inline.Wrapping.NONE);
     }
 
     public static class IDs {
