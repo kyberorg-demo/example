@@ -28,6 +28,7 @@ import java.util.Map;
 //@SpringComponent
 //@UIScope
 @CssImport("./css/main_view.css")
+@CssImport(value = "./css/toggle_button_fix.css", themeFor = "vaadin-checkbox")
 public class MainView extends AppLayout implements BeforeEnterObserver {
 
     private final Tabs tabs = new Tabs();
