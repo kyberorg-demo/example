@@ -22,7 +22,7 @@
     text-decoration: none;
 }
 
-.site-page-item-content iron-icon {
+.site-page-item-content vaadin-icon {
     width: 50%;
     height: calc(100% - 2em);
 }
