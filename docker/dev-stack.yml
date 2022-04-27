@@ -6,11 +6,11 @@ services:
     environment:
       - SPRING_PROFILES_ACTIVE=dev, actuator
       - DB_HOST=${DB_HOST?Database host must be set}
-      - DB_NAME=${DB_NAME:example-app}
-      - DB_USER=${DB_USER:example-app}
+      - DB_NAME=${DB_NAME:-example-app}
+      - DB_USER=${DB_USER:-example-app}
       - DB_PASSWORD=${DB_PASS?Secure Database password must be set}
       - REDIS_HOST=${REDIS_HOST?Redis host must be set}
-      - REDIS_DB=${REDIS_DB:1}
+      - REDIS_DB=${REDIS_DB:-1}
       - REDIS_PASSWORD=${REDIS_PASS?Secure Redis password must be set}
     ports:
       - 11002:8080
