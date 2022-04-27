@@ -1,6 +1,5 @@
-ARG JAVA_BASE=11-jdk-openj9
-FROM adoptopenjdk:${JAVA_BASE}
-ENV JAVA_VERSION=${JAVA_BASE}
+FROM adoptopenjdk:11-jdk-openj9
+ENV JAVA_VERSION=11-jdk-openj9
 
 ARG JAR_FILE=target/*.jar
 COPY ${JAR_FILE} app.jar
