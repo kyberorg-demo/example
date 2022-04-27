@@ -31,7 +31,7 @@ public class SettingsPage extends VerticalLayout implements BeforeEnterObserver 
     private final SettingsService settingsService;
 
     private final Span sessionSpan = new Span();
-    private final ToggleButton lightModeToggle = new ToggleButton("LightMode");
+    private final ToggleButton lightModeToggle = new ToggleButton("LightMode:");
 
     private boolean lightMode = false;
     private Settings settings;
