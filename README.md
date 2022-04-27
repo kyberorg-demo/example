@@ -5,3 +5,5 @@ Simple Spring Boot Application with REST, Vaadin and Database
 
 ## Credits
 <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+
+Builded by TeamCity from JetBrains https://www.jetbrains.com/
