@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
   app:
-    image: quay.io/kyberorg/example-app:edge
+    image: kyberorg/example-app:edge
     environment:
       - SPRING_PROFILES_ACTIVE=dev, actuator
       - DB_HOST=${DB_HOST?Database host must be set}
