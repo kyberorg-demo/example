@@ -35,9 +35,9 @@ build/
 
 ### App Specific ###
 package.json
-package-lock.json
 webpack.config.js
 webpack.generated.js
+frontend/generated
 
 docker/app_db
 docker/redis
