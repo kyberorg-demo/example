@@ -19,15 +19,22 @@
     <changeSet id="2" author="kyberorg">
         <createTable tableName="records">
             <column name="id" autoIncrement="true" type="int">
-                <constraints primaryKey="true" nullable="false" />
+                <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="author" type="varchar(255)">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
             <column name="record" type="varchar(255)">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
         </createTable>
+    </changeSet>
+
+    <changeSet id="3" author="kyberorg">
+        <insert tableName="status">
+            <column name="id">1</column>
+            <column name="status">1</column>
+        </insert>
     </changeSet>
 
 </databaseChangeLog>
