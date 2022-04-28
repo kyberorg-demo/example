@@ -33,7 +33,7 @@
     <changeSet id="3" author="kyberorg">
         <insert tableName="status">
             <column name="id">1</column>
-            <column name="status">1</column>
+            <column name="status" valueBoolean="true"/>
         </insert>
     </changeSet>
 
