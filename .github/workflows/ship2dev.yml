@@ -14,26 +14,24 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Complile JAR
+      - name: Login to reg.kio.ee
+        run: echo "${{ secrets.REG_KIO_TOKEN }}" | docker login -u "${{ secrets.REG_KIO_USER }}" --password-stdin reg.kio.ee
+
+      - name: Resolve Dependencies
+        run: mvn --batch-mode --update-snapshots dependency:tree
+
+      - name: Compile JAR
         run: mvn --batch-mode --update-snapshots clean package -P production,noTesting
 
-      - name: Login to DockerHub
-        uses: docker/login-action@v1
-        with:
-          username: ${{ secrets.HUB_USERNAME }}
-          password: ${{ secrets.HUB_PASSWORD }}
+      - name: Docker build and tag
+        run: docker build -f Dockerfile.DEV -t reg.kio.ee/kyberorg/example-app:edge .
 
-      - name: Build and push docker image
-        id: docker_build
-        uses: docker/build-push-action@v2
-        with:
-          context: ./
-          file: Dockerfile.DEV
-          push: true
-          tags: kyberorg/example-app:edge
+      - name: Docker push
+        run: docker push reg.kio.ee/kyberorg/example-app:edge
 
-      - name: Image digest
-        run: echo ${{ steps.docker_build.outputs.digest }}
+      - name: Delete pushed image to prevent mess
+        run: docker rmi reg.kio.ee/kyberorg/example-app:edge
+        continue-on-error: true
 
       - name: Deploy
         uses: wei/curl@master
@@ -56,7 +54,7 @@ jobs:
 
       - name: Test App
         continue-on-error: true
-        run:  mvn -Dtest.url=https://dev-example.kyberorg.io -Dgrid.hostname=http://127.0.0.1:4444 -Dselenide.browser=chrome -Dtest.buildName=example-${{ github.run_id }} -Dsurefire.rerunFailingTestsCount=2 clean test
+        run: mvn -Dtest.url=https://dev-example.kyberorg.io -Dgrid.hostname=http://grid.kio.ee -Dselenide.browser=chrome -Dtest.buildName=example-${{ github.run_id }} -Dsurefire.rerunFailingTestsCount=2 clean test
 
       - name: Publish Screenshots of failing tests, if any
         uses: actions/upload-artifact@v2
