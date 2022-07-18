@@ -56,6 +56,7 @@ public class MainView extends AppLayout implements BeforeEnterObserver {
         addMenuTab("Status", StatusPage.class, VaadinIcon.SPARK_LINE);
         addMenuTab("Unicom", UnicomPage.class, VaadinIcon.COMMENT);
         addMenuTab("Settings", SettingsPage.class, VaadinIcon.COG);
+        addMenuTab("Debug Page", DebugPage.class, VaadinIcon.FLASK);
 
         tabs.setOrientation(Tabs.Orientation.VERTICAL);
         addToDrawer(tabs);
