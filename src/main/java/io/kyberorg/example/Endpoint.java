@@ -65,5 +65,11 @@ public class Endpoint {
          * Settings Page.
          */
         public static final String SETTINGS_PAGE = "settings";
+        /**
+         * Debug Page.
+         */
+        public static final String DEBUG_PAGE = "debug";
+
+
     }
 }
