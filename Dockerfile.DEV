@@ -37,7 +37,7 @@ COPY --from=healthcheckBuild /go/bin/cmd /app/healthcheck
 COPY --from=entrypointBuild /go/bin/cmd /app/entrypoint
 HEALTHCHECK --start-period=60s --interval=5s --timeout=20s --retries=3 CMD ["/app/healthcheck"]
 
-RUN addgroup -S --gid 65532  appgroup && adduser -S appuser --uid 65532 -G appgroup
+# 65532 - is appuser @runner.
 USER appuser
 
 ENTRYPOINT ["/app/entrypoint"]
