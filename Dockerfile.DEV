@@ -1,20 +1,29 @@
-FROM adoptopenjdk:11-jdk-openj9
-ENV JAVA_VERSION=11-jdk-openj9
+FROM kio.ee/base/go:1.18.4 as healthcheckBuild
+WORKDIR /go/src/app
 
-ARG JAR_FILE=target/*.jar
-COPY ${JAR_FILE} app.jar
-COPY ./docker-entrypoint.sh /
+COPY cmd/healthcheck.go cmd/healthcheck.go
 
-RUN sh -c 'chmod +x /docker-entrypoint.sh'
-RUN apt-get update && apt-get install -y haveged netcat curl jq
+RUN  GO111MODULE=off CGO_ENABLED=0 go install ./...
 
-RUN groupadd spring && useradd --create-home --shell  /bin/bash --gid spring spring && \
-    chown spring:spring /docker-entrypoint.sh && chown spring:spring /app.jar
+# Set ownership and permissions as required
+# 65532 - is appuser @runner.
+RUN mkdir /app && chown -R 65532:65532 /app
 
-USER spring:spring
+FROM kio.ee/base/go:1.18.4 as entrypointBuild
+WORKDIR /go/src/app
+COPY cmd/entrypoint.go cmd/entrypoint.go
 
-ENTRYPOINT "/docker-entrypoint.sh"
+RUN  GO111MODULE=off CGO_ENABLED=0 go install ./...
 
-HEALTHCHECK --start-period=60s --interval=5s --timeout=20s --retries=3 \
-   CMD curl --silent --request GET http://127.0.0.1:8080/actuator/health \
-                   | jq --exit-status '.status == "UP"' || exit 1
+FROM kio.ee/base/java:17-jdk as runner
+LABEL maintainer="Aleksandr Muravja <alex@kyberorg.io>"
+
+COPY --from=healthcheckBuild /go/bin/cmd /app/healthcheck
+COPY --from=entrypointBuild /go/bin/cmd /app/entrypoint
+
+HEALTHCHECK --start-period=60s --interval=5s --timeout=20s --retries=3 CMD ["/app/healthcheck"]
+
+RUN addgroup -S --gid 65532  appgroup && adduser -S appuser --uid 65532 -G appgroup
+USER appuser
+
+ENTRYPOINT ["/app/entrypoint"]
