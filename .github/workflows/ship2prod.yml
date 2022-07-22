@@ -24,19 +24,23 @@ jobs:
         run: mvn --batch-mode --update-snapshots clean package -P production,noTesting
 
       - name: Docker build and tag
-        run: docker build -f Dockerfile.PROD -t kio.ee/kyberorg/example-app:latest .
+        run: docker build -f Dockerfile.PROD -t kio.ee/kyberorg/example-app:stable .
 
       - name: Docker push
-        run: docker push kio.ee/kyberorg/example-app:latest
+        run: docker push kio.ee/kyberorg/example-app:stable
+
+      - name: Get Docker image SHA256
+        id: docker_image_sha
+        run: echo "::set-output name=imageSha::$(docker images --digests | awk 'NR==2 {print $3}')"
 
       - name: Delete pushed image to prevent mess
-        run: docker rmi kio.ee/kyberorg/example-app:latest
+        run: docker rmi kio.ee/kyberorg/example-app:stable
         continue-on-error: true
 
       - name: Deploy
         uses: wei/curl@master
         with:
-          args: -X POST ${{ secrets.PROD_DEPLOY_HOOK }}
+          args: -X POST ${{ secrets.PROD_DEPLOY_HOOK }}?tag=stable@${{ steps.docker_image_sha.outputs.imageSha }}
 
       - name: Get deployed commit SHA
         id: deployed_commit
