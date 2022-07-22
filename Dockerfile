@@ -1,6 +1,5 @@
-ARG JAVA_BASE=11-jdk-openj9
-FROM adoptopenjdk:${JAVA_BASE}
-ENV JAVA_VERSION=${JAVA_BASE}
+FROM kio.ee/base/java:17-jdk
+ENV JAVA_VERSION=17-jdk
 
 ARG JAR_FILE=target/*.jar
 COPY ${JAR_FILE} app.jar
