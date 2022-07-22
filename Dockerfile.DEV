@@ -17,7 +17,7 @@ RUN  GO111MODULE=off CGO_ENABLED=0 go install ./...
 
 FROM kio.ee/hub/library/amazoncorretto:17-alpine as builder
 
-COPY target/yalsee.jar yalsee.jar
+COPY target/app.jar app.jar
 RUN java -Djarmode=layertools -jar yalsee.jar extract
 
 FROM kio.ee/base/java:17-jdk as runner
