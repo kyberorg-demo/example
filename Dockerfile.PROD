@@ -19,7 +19,7 @@ FROM kio.ee/base/java:17-jdk as builder
 COPY target/example-app.jar app.jar
 RUN java -Djarmode=layertools -jar app.jar extract
 
-FROM kio.ee/base/alpine:runtime as final
+FROM kio.ee/base/java:17-jre as final
 WORKDIR /app
 
 COPY --from=builder dependencies/ ./
@@ -34,10 +34,6 @@ COPY --from=builder application/ ./
 COPY --from=healthcheckBuild /go/bin/cmd /app/healthcheck
 COPY --from=entrypointBuild /go/bin/cmd /app/entrypoint
 HEALTHCHECK --start-period=60s --interval=5s --timeout=20s --retries=3 CMD ["/app/healthcheck"]
-
-ENV JAVA_HOME=/opt/java/openjdk
-ENV PATH "${JAVA_HOME}/bin:${PATH}"
-COPY --from=builder $JAVA_HOME $JAVA_HOME
 
 # 65532 - is appuser @runner.
 USER appuser
