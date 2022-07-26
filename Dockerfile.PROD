@@ -15,16 +15,14 @@ COPY cmd/entrypoint.go cmd/entrypoint.go
 
 RUN  GO111MODULE=off CGO_ENABLED=0 go install ./...
 
-FROM kio.ee/hub/library/amazoncorretto:17-alpine as builder
-
+FROM kio.ee/base/java:17-jdk as builder
 COPY target/example-app.jar app.jar
 RUN java -Djarmode=layertools -jar app.jar extract
 
-FROM kio.ee/base/java:17-jre as runner
-
+FROM kio.ee/base/alpine:runtime as final
 WORKDIR /app
 
-COPY --from=builder  dependencies/ ./
+COPY --from=builder dependencies/ ./
 COPY --from=builder snapshot-dependencies/ ./
 
 # see https://github.com/moby/moby/issues/37965
@@ -36,6 +34,10 @@ COPY --from=builder application/ ./
 COPY --from=healthcheckBuild /go/bin/cmd /app/healthcheck
 COPY --from=entrypointBuild /go/bin/cmd /app/entrypoint
 HEALTHCHECK --start-period=60s --interval=5s --timeout=20s --retries=3 CMD ["/app/healthcheck"]
+
+ENV JAVA_HOME=/opt/java/openjdk
+ENV PATH "${JAVA_HOME}/bin:${PATH}"
+COPY --from=builder $JAVA_HOME $JAVA_HOME
 
 # 65532 - is appuser @runner.
 USER appuser
