@@ -1,9 +1,7 @@
-.idea
-.run
-docker
-node_modules
-.gitignore
-checkstyle.xml
-README.md
-example.iml
-.github
+# Ignore everything
+**
+# Entrypoint abd Healthcheck sources
+!cmd
+# Jar
+!target/example-app.jar
+

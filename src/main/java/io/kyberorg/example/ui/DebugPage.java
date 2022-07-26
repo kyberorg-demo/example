@@ -1,5 +1,6 @@
 package io.kyberorg.example.ui;
 
+import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.button.Button;
 
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -32,7 +33,8 @@ public class DebugPage extends VerticalLayout {
                getUI().get().getPage().open("https://google.com");
            }
         });
-        add(theButton);
+        Text text = new Text("It works!");
+        add(theButton, text);
     }
 
 
