@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Selenide.open;
 import static io.kyberorg.example.tests.ui.pageobjects.Vaadin.waitForVaadin;
@@ -36,6 +37,6 @@ public class HomePageTest extends SelenideTest {
     @Test
     public void urlWithSlashWillOpenHomePage() {
         HomePage.PAGE_TITLE.should(exist);
-        HomePage.SITE_PAGE_ITEMS.shouldHaveSize(NUMBER_OF_ELEMENTS_AT_HOME_PAGE);
+        HomePage.SITE_PAGE_ITEMS.shouldHave(size(NUMBER_OF_ELEMENTS_AT_HOME_PAGE));
     }
 }
