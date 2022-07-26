@@ -33,7 +33,6 @@ public abstract class SelenideTest {
         Configuration.reportsFolder = "target/reports";
         Configuration.timeout = SELENIDE_TIMEOUT;
         Configuration.browser = SELENIDE_BROWSER;
-        Configuration.startMaximized = true;
         //critical for Vaadin input
         Configuration.fastSetValue = true;
 
