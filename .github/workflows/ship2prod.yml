@@ -23,6 +23,9 @@ jobs:
       - name: Compile JAR
         run: mvn --batch-mode --update-snapshots clean package -P production,noTesting
 
+       - name: Pull latest images used for building image
+         run: for img (kio.ee/base/go:1.18.4 kio.ee/base/java:17-jdk kio.ee/base/java:17-jre); do docker pull $img; done
+
       - name: Docker build and tag
         run: docker build -f Dockerfile.PROD -t kio.ee/kyberorg/example-app:stable .
 

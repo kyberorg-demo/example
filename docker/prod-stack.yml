@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
   app:
-    image: kyberorg/example-app:latest
+    image: kio.ee/kyberorg/example-app:stable
     environment:
       - SPRING_PROFILES_ACTIVE=prod
       - DB_HOST=${DB_HOST?Database host must be set}
