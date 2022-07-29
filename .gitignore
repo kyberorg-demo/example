@@ -39,6 +39,7 @@ webpack.config.js
 webpack.generated.js
 frontend/generated
 
-docker/app_db
-docker/redis
-
+# Local Run Files
+docker/exampleapp-local-run/pgadmin/
+docker/exampleapp-local-run/postgres/
+docker/exampleapp-local-run/redis/

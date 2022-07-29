@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
   app:
-    image: kyberorg/example-app:edge
+    image: kio.ee/kyberorg/example-app:edge
     environment:
       - SPRING_PROFILES_ACTIVE=dev, actuator
       - DB_HOST=${DB_HOST?Database host must be set}
@@ -13,7 +13,7 @@ services:
       - REDIS_DB=${REDIS_DB:-1}
       - REDIS_PASSWORD=${REDIS_PASS?Secure Redis password must be set}
     ports:
-      - 11002:8080
+      - "11002:8080"
     deploy:
       replicas: 1
       restart_policy:

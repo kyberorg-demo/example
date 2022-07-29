@@ -5,7 +5,7 @@ networks:
 
 services:
   app:
-    build: ../
+    build: ../..
     environment:
       SPRING_PROFILES_ACTIVE: local, actuator
       REDIS_HOST: redis
@@ -17,62 +17,59 @@ services:
       - net
   # Database
   db:
-    image: library/mariadb:10.5.9
+    image: library/postgres:14.4-alpine
     volumes:
-      # Adjust me (app _db - is folder on host)
-      - ./app_db:/var/lib/mysql
-      - ./my.cnf:/etc/alternatives/my.cnf
+      - ./postgres:/var/lib/postgresql/data
     restart: always
     ports:
-      - "3306:3306"
+      - "5432:5432"
     environment:
-      MYSQL_DATABASE: example-app
-      MYSQL_USER: example-user
-      MYSQL_PASSWORD: example-password
-      MYSQL_ROOT_PASSWORD: rootPassword
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: pg_salaSana
     networks:
       - net
-  # phpmyadmin
-  phpmyadmin:
+  # PG Admin4
+  pga:
     depends_on:
       - db
-    image: library/phpmyadmin
+    image: dpage/pgadmin4:6.12
     restart: always
     ports:
-      - '9090:80'
+      - '5050:80'
     environment:
-      PMA_HOST: db
-      MYSQL_ROOT_PASSWORD: rootPassword
+      PGADMIN_DEFAULT_EMAIL: yalsee@yals.ee
+      PGADMIN_DEFAULT_PASSWORD: AXtYcRuhGZCkZVv4xLpgjpLVd
     networks:
       - net
-  # redis
+  # Redis
   redis:
-    image: library/redis:6.2.6
+    image: library/redis:7.0.2
     command: [ "redis-server","--requirepass", "redis-password" ]
     restart: always
     ports:
       - '6379:6379'
     volumes:
-      # Adjust me (redis - is folder on host)
       - ./redis:/data
     environment:
       MASTER: true
       REDIS_AUTH: redis-password
     networks:
       - net
-  # phpRedisAdmin
-  phpredisadmin:
+  # Redis Commander
+  redcom:
     depends_on:
       - redis
-    image: erikdubbelboer/phpredisadmin:v1.13.2
+    image: rediscommander/redis-commander:latest
     restart: always
     ports:
-      - '9091:80'
+      - '8081:8081'
+    volumes:
+      - ./redis.connections.json:/redis-commander/config/local-production.json:ro
     environment:
-      REDIS_1_HOST: redis
-      REDIS_1_PORT: 6379
-      REDIS_1_AUTH: redis-password
-      ADMIN_USER: admin
-      ADMIN_PASS: redis-pass
+        - REDIS_HOSTS=redis
+        - REDIS_HOST=redis
+        - REDIS_PORT=6379
+        - REDIS_PASSWORD=redis-password
+        - VIEW_JSON_DEFAULT=all
     networks:
       - net
