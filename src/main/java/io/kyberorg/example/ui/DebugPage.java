@@ -33,7 +33,7 @@ public class DebugPage extends VerticalLayout {
                getUI().get().getPage().open("https://google.com");
            }
         });
-        Text text = new Text("It works with JRE as well!");
+        Text text = new Text("It works at Kone as well!");
         add(theButton, text);
     }
 
